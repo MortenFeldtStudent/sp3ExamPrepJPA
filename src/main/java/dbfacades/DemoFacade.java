@@ -4,9 +4,11 @@ import entity.Customer;
 import entity.ItemType;
 import entity.OrderLine;
 import entity.Orders;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 /*
 Simple Facade demo for this start-up project
@@ -32,7 +34,6 @@ public class DemoFacade {
             em.getTransaction().begin();
             em.persist(customer);
             em.getTransaction().commit();
-            System.out.println(customer.getId());
             return customer;
         } finally {
             em.close();
@@ -41,17 +42,42 @@ public class DemoFacade {
   
   //Find a Customer
   public Customer getCustomer(int customerId){
-      throw new UnsupportedOperationException("Method not implemented!");
+      EntityManager em = emf.createEntityManager();
+
+        try {
+            Query q = em.createQuery("SELECT c FROM Customer c WHERE c.id = :id");
+            q.setParameter("id", customerId);
+            return (Customer) q.getSingleResult();
+        } finally {
+            em.close();
+        }
   }
   
   //Get all Customers
   public List<Customer> getAllCustomers(){
-      throw new UnsupportedOperationException("Method not implemented!");
+      EntityManager em = emf.createEntityManager();
+
+        try {
+            List<Customer> customerList = new ArrayList();
+            Query q = em.createQuery("SELECT c FROM Customer c");
+            customerList = q.getResultList();
+            return customerList;
+        } finally {
+            em.close();
+        }
   }
   
   //Create an Order
   public Orders createOrder(Orders order){
-      throw new UnsupportedOperationException("Method not implemented!");
+      EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(order);
+            em.getTransaction().commit();
+            return order;
+        } finally {
+            em.close();
+        }
   }
   
   //Add an Order to a Customer
@@ -61,7 +87,15 @@ public class DemoFacade {
   
   //Find an Order
   public Orders getOrder(int orderId){
-      throw new UnsupportedOperationException("Method not implemented!");
+      EntityManager em = emf.createEntityManager();
+
+        try {
+            Query q = em.createQuery("SELECT o FROM Orders o WHERE o.id = :id");
+            q.setParameter("id", orderId);
+            return (Orders) q.getSingleResult();
+        } finally {
+            em.close();
+        }
   }
   
   //Find all Orders, for a specific Customer
