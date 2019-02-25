@@ -1,5 +1,11 @@
 package dbfacades;
 
+import entity.Customer;
+import entity.ItemType;
+import entity.OrderLine;
+import entity.Orders;
+import java.util.List;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 /*
@@ -19,6 +25,64 @@ public class DemoFacade {
     this.emf = emf;
   }
 
+  //Create a Customer
+  public Customer createCustomer(Customer customer){
+      EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(customer);
+            em.getTransaction().commit();
+            System.out.println(customer.getId());
+            return customer;
+        } finally {
+            em.close();
+        }
+  }
+  
+  //Find a Customer
+  public Customer getCustomer(int customerId){
+      
+  }
+  
+  //Get all Customers
+  public List<Customer> getAllCustomers(){
+      
+  }
+  
+  //Create an Order
+  public Orders createOrder(Orders order){
+      
+  }
+  
+  //Add an Order to a Customer
+  public Customer addOrderToCustomer(Customer customer, Orders order){
+      
+  }
+  
+  //Find an Order
+  public Orders getOrder(int orderId){
+      
+  }
+  
+  //Find all Orders, for a specific Customer
+  public List<Orders> getOrdersForCustomer(Customer customer){
+      
+  }
+  
+  //Create an OrderLine, and add it to an Order
+  public Orders createOrderLineAddToOrder(OrderLine orderLine, Orders order){
+      
+  }
+  
+  //Create an ItemType, and add it to an OrderLine
+  public ItemType createItemTypeAddToOrderLine(ItemType itemType, OrderLine orderLine){
+      
+  }
+  
+  //Find the total price of an order
+  public Integer getTotalPriceFromOrder(Orders order){
+      
+  }
   
 
   /*
