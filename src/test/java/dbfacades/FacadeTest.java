@@ -88,7 +88,7 @@ public class FacadeTest {
   
   //Create a Customer
   @Test
-  public void createCustomer(){
+  public void createCustomerTest(){
       Customer customer = new Customer("Morten3", "Feldt3");
       Customer customerPersist = facade.createCustomer(customer);
       int actual = customerPersist.getId();
@@ -98,7 +98,7 @@ public class FacadeTest {
   
   //Find a Customer
   @Test
-  public void getCustomer(){
+  public void getCustomerTest(){
       int customerId = 1;
       Customer customer = facade.getCustomer(customerId);
       int actual = customer.getId();
@@ -108,7 +108,7 @@ public class FacadeTest {
   
   //Get all Customers
   @Test
-  public void getAllCustomer(){
+  public void getAllCustomerTest(){
       int actual = facade.getAllCustomers().size();
       int expected = 2;
       Assert.assertEquals(expected, actual);
@@ -116,7 +116,7 @@ public class FacadeTest {
   
   //Create an Order
   @Test
-  public void createOrder(){
+  public void createOrderTest(){
       Orders order = new Orders();
       Orders orderPersist = facade.createOrder(order);
       int actual = orderPersist.getId();
@@ -126,7 +126,8 @@ public class FacadeTest {
   
   //Add an Order to a Customer
   @Test
-  public void addOrderToCustomer(){
+  public void addOrderToCustomerTest(){
+      em = emf.createEntityManager();
       Customer customer = em.find(Customer.class, 1);
       Orders order = em.find(Orders.class, 1);
       Customer customerMerged = facade.addOrderToCustomer(customer, order);
@@ -137,7 +138,7 @@ public class FacadeTest {
   
   //Find an Order
   @Test
-  public void getOrder(){
+  public void getOrderTest(){
       int orderId = 1;
       Orders order = facade.getOrder(orderId);
       int actual = order.getId();
@@ -147,7 +148,8 @@ public class FacadeTest {
   
   //Find all Orders, for a specific Customer
   @Test
-  public void getOrdersForCustomer(){
+  public void getOrdersForCustomerTest(){
+      em = emf.createEntityManager();
       Customer customer = em.find(Customer.class, 2);
       int actual = facade.getOrdersForCustomer(customer).size();
       int expected = 1;
@@ -156,7 +158,8 @@ public class FacadeTest {
   
   //Create an OrderLine, and add it to an Order
   @Test
-  public void createOrderLineAddToOrder(){
+  public void createOrderLineAddToOrderTest(){
+      em = emf.createEntityManager();
       OrderLine orderLine = new OrderLine(2);
       Orders order = em.find(Orders.class, 1);
       //order.addOrderLine(orderLine);
@@ -167,7 +170,8 @@ public class FacadeTest {
   
   //Create an ItemType, and add it to an OrderLine
   @Test
-  public void createItemTypeAddToOrderLine(){
+  public void createItemTypeAddToOrderLineTest(){
+      em = emf.createEntityManager();
       ItemType itemType = new ItemType("Name1", "Description1", 10);
       OrderLine orderLine = em.find(OrderLine.class, 2);
       //orderLine.setItemType(itemType);
@@ -178,7 +182,8 @@ public class FacadeTest {
   
   //Find the total price of an order
   @Test
-  public void getTotalPriceFromOrder(){
+  public void getTotalPriceFromOrderTest(){
+      em = emf.createEntityManager();
       Orders order = em.find(Orders.class, 1);
       int actual = facade.getTotalPriceFromOrder(order);
       int expected = 300;

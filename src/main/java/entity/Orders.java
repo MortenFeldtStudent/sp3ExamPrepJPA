@@ -18,6 +18,7 @@ public class Orders implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private Integer orderID;
     @OneToMany(cascade = {CascadeType.PERSIST , CascadeType.MERGE})
     @JoinColumn(name = "FK_OrderLines")
     private List<OrderLine> orderLines = new ArrayList();
@@ -27,10 +28,19 @@ public class Orders implements Serializable {
 
     public Orders(Integer id) {
         this.id = id;
+        orderID = id;
     }
     
     public void addOrderLine(OrderLine orderLine){
         orderLines.add(orderLine);
+    }
+
+    public Integer getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(Integer orderID) {
+        this.orderID = orderID;
     }
 
     public List<OrderLine> getOrderLines() {

@@ -41,47 +41,47 @@ public class DemoFacade {
   
   //Find a Customer
   public Customer getCustomer(int customerId){
-      
+      throw new UnsupportedOperationException("Method not implemented!");
   }
   
   //Get all Customers
   public List<Customer> getAllCustomers(){
-      
+      throw new UnsupportedOperationException("Method not implemented!");
   }
   
   //Create an Order
   public Orders createOrder(Orders order){
-      
+      throw new UnsupportedOperationException("Method not implemented!");
   }
   
   //Add an Order to a Customer
   public Customer addOrderToCustomer(Customer customer, Orders order){
-      
+      throw new UnsupportedOperationException("Method not implemented!");
   }
   
   //Find an Order
   public Orders getOrder(int orderId){
-      
+      throw new UnsupportedOperationException("Method not implemented!");
   }
   
   //Find all Orders, for a specific Customer
   public List<Orders> getOrdersForCustomer(Customer customer){
-      
+      throw new UnsupportedOperationException("Method not implemented!");
   }
   
   //Create an OrderLine, and add it to an Order
   public Orders createOrderLineAddToOrder(OrderLine orderLine, Orders order){
-      
+      throw new UnsupportedOperationException("Method not implemented!");
   }
   
   //Create an ItemType, and add it to an OrderLine
   public ItemType createItemTypeAddToOrderLine(ItemType itemType, OrderLine orderLine){
-      
+      throw new UnsupportedOperationException("Method not implemented!");
   }
   
   //Find the total price of an order
   public Integer getTotalPriceFromOrder(Orders order){
-      
+      throw new UnsupportedOperationException("Method not implemented!");
   }
   
 
